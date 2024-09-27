@@ -1,0 +1,12 @@
+Q1
+SELECT MAX(UnitPrice) AS UnitPrice FROM Products WHERE UnitPrice < ( SELECT MAX(UnitPrice) FROM Products) 
+***
+
+
+Q2
+SELECT P.ProductID, P.SupplierID FROM Products AS P INNER JOIN (SELECT SupplierID, COUNT(ProductID) AS TotalProducts FROM Products GROUP BY SupplierID ) AS SubQuery ON P.SupplierID = SubQuery.SupplierID WHERE SubQuery.TotalProducts = ( SELECT MAX(TotalProducts) FROM ( SELECT COUNT(ProductID) AS TotalProducts FROM Products GROUP BY SupplierID ) AS InnerSubQuery );
+***
+
+
+Q3
+***
